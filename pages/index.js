@@ -1,7 +1,7 @@
 import React from 'react';
 import { observable } from 'mobx';
 import { observer, useStaticRendering, inject } from 'mobx-react';
-import Link from 'next/link'
+import Link from 'next/link';
 
 @inject('store')
 @observer
@@ -11,9 +11,11 @@ class Index extends React.Component {
       <div>
         <p>Hello, you clicked the button {this.props.store.clickCount} times</p>
         <button onClick={this.props.store.raiseClickCount}>Click here</button>
-        <Link href="/about"><a>About me</a></Link>
+        <Link href="/about">
+          <a>About me</a>
+        </Link>
       </div>
-    )
+    );
   }
 }
 

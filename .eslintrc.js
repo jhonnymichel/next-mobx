@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'prettier'],
+  extends: ['airbnb', 'prettier', 'prettier/react'],
   plugins: ['prettier'],
   rules: {
     'no-shadow': ['error', { allow: ['props'] }],
@@ -37,11 +37,8 @@ module.exports = {
     },
     'import/resolver': {
       node: {
-        moduleDirectory: [
-          'node_modules',
-          '.'
-        ]
+        moduleDirectory: ['node_modules', '.']
       }
     }
-  },
+  }
 };
