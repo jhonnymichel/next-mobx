@@ -6,7 +6,9 @@ export default inject('store')(
     <>
       <h1>About page</h1>
       <p>You clicked the other page button: {store.clickCount} times</p>
-      <button onClick={store.raiseClickCount}>Click me</button>
+      <button type="button" onClick={store.raiseClickCount}>
+        Click me
+      </button>
     </>
   ))
 );

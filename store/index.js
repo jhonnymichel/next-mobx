@@ -1,24 +1,33 @@
-import { action, observable } from 'mobx'
-import { useStaticRendering } from 'mobx-react'
+import { action, observable } from 'mobx';
+import { useStaticRendering } from 'mobx-react';
 
-const isServer = typeof window === 'undefined'
-useStaticRendering(isServer)
+const isServer = typeof window === 'undefined';
+useStaticRendering(isServer);
 
 let store = null;
 
 class Store {
-  @observable clickCount = 55;
+  @observable clickCount = 0;
+
+  constructor(initialState = {}) {
+    if (initialState.clickCount) {
+      this.clickCount = initialState.clickCount;
+    }
+  }
 
   @action raiseClickCount = () => {
-    this.clickCount++
-  }
+    this.clickCount += 1;
+  };
 }
 
-export default function getStore() {
+export default function getStore(initialState) {
   if (isServer) {
-    return new Store();
-  } else if (!store) {
-    store = new Store();
+    return new Store(initialState);
   }
+
+  if (!store) {
+    store = new Store(initialState);
+  }
+
   return store;
 }

@@ -10,6 +10,14 @@ class MobxPoweredApp extends App {
     // We need to instance the store here. The thing is:
     // The store will be static on server side. keep that in mind.
     const store = getStore();
+    const { router } = appContext;
+    if (router.query.count) {
+      try {
+        store.clickCount = Number(router.query.count);
+      } catch (e) {
+        store.clickCount = 0;
+      }
+    }
 
     const appProps = await App.getInitialProps(appContext);
     return {
@@ -27,7 +35,7 @@ class MobxPoweredApp extends App {
     if (isServer) {
       this.store = this.props.store;
     } else {
-      this.store = getStore();
+      this.store = getStore(this.props.store);
     }
   }
 
