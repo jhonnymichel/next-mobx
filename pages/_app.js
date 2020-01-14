@@ -1,7 +1,8 @@
-import App, { Container } from 'next/app'
-import React from 'react'
-import getStore from '../store'
-import { Provider } from 'mobx-react'
+import App, { Container } from 'next/app';
+import React from 'react';
+import { Provider } from 'mobx-react';
+import getStore from 'store';
+import 'styles/index.css';
 
 class MobxPoweredApp extends App {
   static async getInitialProps(appContext) {
@@ -10,12 +11,11 @@ class MobxPoweredApp extends App {
     // The store will be static on server side. keep that in mind.
     const store = getStore();
 
-
     const appProps = await App.getInitialProps(appContext);
     return {
       ...appProps,
       store
-    }
+    };
   }
 
   constructor(props) {
@@ -34,12 +34,10 @@ class MobxPoweredApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Container>
-        <Provider store={this.store}>
-          <Component {...pageProps} />
-        </Provider>
-      </Container>
-    )
+      <Provider store={this.store}>
+        <Component {...pageProps} />
+      </Provider>
+    );
   }
 }
 export default MobxPoweredApp;
