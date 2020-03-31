@@ -13,7 +13,7 @@
   "dependencies": {
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
-    "next": "^9.1.7",
+    "next": "^9.3.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "tailwindcss": "^1.1.4"
